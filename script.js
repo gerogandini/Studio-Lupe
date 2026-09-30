@@ -343,15 +343,21 @@ function buildWhatsAppMessage() {
 
   if (removal === "semipermanente") {
     removalText = "Necesita retiro de semipermanente.";
-  } else if (removal === "capping") {
+  }
+
+  if (removal === "capping") {
     removalText = "Necesita retiro de capping en gel.";
-  } else if (removal === "softgel") {
+  }
+
+  if (removal === "softgel") {
     removalText = "Necesita retiro de Soft Gel.";
   }
 
-  const additionalInfo = detalle ? detalle : "No tengo información adicional.";
+  const additionalInfo = detalle
+    ? detalle
+    : "No tengo información adicional.";
 
-  // Generamos los emojis directamente desde sus puntos de código hexadecimales
+  // Generamos los emojis desde puntos Unicode seguros
   const emojiCorazon = String.fromCodePoint(0x1F977); // 🩷
   const emojiDestellos = String.fromCodePoint(0x2728); // ✨
   const emojiSobre = String.fromCodePoint(0x1F4E9);    // 📩
@@ -390,35 +396,6 @@ if (whatsappButton) {
     const rawMessage = buildWhatsAppMessage();
     const encodedMessage = encodeURIComponent(rawMessage);
     const url = `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodedMessage}`;
-
-    window.open(url, "_blank");
-  });
-}
-
-document
-  .querySelectorAll('input[name="retiro"]')
-  .forEach((input) => {
-    input.addEventListener("change", updateSummary);
-  });
-
-renderServices("unasServices", services.unas);
-renderServices("pestanasServices", services.pestanas);
-renderServices("masajesServices", services.masajes);
-
-populateSchedule();
-updateSummary();
-
-const whatsappButton = document.getElementById("whatsappButton");
-
-if (whatsappButton) {
-  whatsappButton.addEventListener("click", () => {
-    if (!validate()) {
-      return;
-    }
-
-    const message = encodeURIComponent(buildWhatsAppMessage());
-
-    const url = `https://wa.me/${WHATSAPP}?text=${message}`;
 
     window.open(url, "_blank");
   });
