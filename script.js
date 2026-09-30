@@ -357,8 +357,8 @@ function buildWhatsAppMessage() {
     ? detalle
     : "No tengo información adicional.";
 
-  const message = `Hola Lupé Studio! 🩷
-Quisiera solicitar un turno ✨
+  const message = `Hola Lupé Studio! \uD83E\uDE77
+Quisiera solicitar un turno \u2728 \u2728
 
 Nombre: ${nombre}
 
@@ -375,7 +375,7 @@ Duración estimada: ${formatDuration(getDuration())}
 Información adicional:
 ${additionalInfo}
 
-¿Está disponible este turno? 📩.`;
+¿Está disponible este turno? \uD83D\uDCE9.`;
 
   return message;
 }
