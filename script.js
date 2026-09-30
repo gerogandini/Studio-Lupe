@@ -335,7 +335,6 @@ function buildWhatsAppMessage() {
   const detalle = document.getElementById("detalle").value.trim();
   const removal = getRemoval();
 
-  // Guiones '-' en la lista de servicios
   const serviceLines = [...selected.values()]
     .map((service) => `- ${service.name}`)
     .join("\n");
@@ -344,25 +343,21 @@ function buildWhatsAppMessage() {
 
   if (removal === "semipermanente") {
     removalText = "Necesita retiro de semipermanente.";
-  }
-
-  if (removal === "capping") {
+  } else if (removal === "capping") {
     removalText = "Necesita retiro de capping en gel.";
-  }
-
-  if (removal === "softgel") {
+  } else if (removal === "softgel") {
     removalText = "Necesita retiro de Soft Gel.";
   }
 
-  const additionalInfo = detalle
-    ? detalle
-    : "No tengo información adicional.";
+  const additionalInfo = detalle ? detalle : "No tengo información adicional.";
 
-  // \u{1F977} = Corazón rosado 🩷
-  // \u{2728}  = Destellos ✨
-  // \u{1F4E9} = Sobre / Mensaje 📩
-  const message = `Hola Lupé Studio! \u{1F977}
-Quisiera solicitar un turno \u{2728}
+  // Generamos los emojis directamente desde sus puntos de código hexadecimales
+  const emojiCorazon = String.fromCodePoint(0x1F977); // 🩷
+  const emojiDestellos = String.fromCodePoint(0x2728); // ✨
+  const emojiSobre = String.fromCodePoint(0x1F4E9);    // 📩
+
+  const message = `Hola Lupé Studio! ${emojiCorazon}
+Quisiera solicitar un turno ${emojiDestellos}
 
 Nombre: ${nombre}
 
@@ -379,10 +374,39 @@ Duración estimada: ${formatDuration(getDuration())}
 Información adicional:
 ${additionalInfo}
 
-¿Está disponible este turno? \u{1F4E9}.`;
+¿Está disponible este turno? ${emojiSobre}.`;
 
   return message;
 }
+
+const whatsappButton = document.getElementById("whatsappButton");
+
+if (whatsappButton) {
+  whatsappButton.addEventListener("click", () => {
+    if (!validate()) {
+      return;
+    }
+
+    const rawMessage = buildWhatsAppMessage();
+    const encodedMessage = encodeURIComponent(rawMessage);
+    const url = `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodedMessage}`;
+
+    window.open(url, "_blank");
+  });
+}
+
+document
+  .querySelectorAll('input[name="retiro"]')
+  .forEach((input) => {
+    input.addEventListener("change", updateSummary);
+  });
+
+renderServices("unasServices", services.unas);
+renderServices("pestanasServices", services.pestanas);
+renderServices("masajesServices", services.masajes);
+
+populateSchedule();
+updateSummary();
 
 const whatsappButton = document.getElementById("whatsappButton");
 
