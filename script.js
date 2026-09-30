@@ -353,7 +353,12 @@ function buildWhatsAppMessage() {
     removalText = "Necesita retiro de Soft Gel.";
   }
 
-  let message = `Hola Lupé Studio! Quisiera solicitar un turno.
+  const additionalInfo = detalle
+    ? detalle
+    : "No tengo información adicional.";
+
+  const message = `Hola Lupé Studio! 🩷
+Quisiera solicitar un turno ✨
 
 Nombre: ${nombre}
 
@@ -365,18 +370,12 @@ ${serviceLines}
 
 ${removalText}
 
-Duración estimada: ${formatDuration(getDuration())}`;
-
-  if (detalle) {
-    message += `
+Duración estimada: ${formatDuration(getDuration())}
 
 Información adicional:
-${detalle}`;
-  }
+${additionalInfo}
 
-  message += `
-
-¿Está disponible este turno?`;
+¿Está disponible este turno? 📩.`;
 
   return message;
 }
