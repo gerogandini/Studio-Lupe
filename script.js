@@ -336,7 +336,7 @@ function buildWhatsAppMessage() {
   const removal = getRemoval();
 
   const serviceLines = [...selected.values()]
-    .map((service) => `- ${service.name}`)
+    .map((service) => `• ${service.name}`)
     .join("\n");
 
   let removalText = "No necesita retiro.";
@@ -353,27 +353,30 @@ function buildWhatsAppMessage() {
     removalText = "Necesita retiro de Soft Gel.";
   }
 
-  const additionalInfo = detalle
-    ? detalle
-    : "No tengo información adicional.";
+  let message = `Hola Lupé Studio! Quisiera solicitar un turno.
 
-  // Emojis codificados en Unicode
-  const emojiCorazon = "\uD83E\uDE77";
-  const emojiDestellos = "\u2728";
-  const emojiSobre = "\uD83D\uDCE9";
+Nombre: ${nombre}
 
-  const message = "Hola Lupé Studio! " + emojiCorazon + "\n" +
-    "Quisiera solicitar un turno " + emojiDestellos + "\n\n" +
-    "Nombre: " + nombre + "\n\n" +
-    "Día: " + dia + "\n" +
-    "Horario: " + hora + "\n\n" +
-    "Servicios:\n" +
-    serviceLines + "\n\n" +
-    removalText + "\n\n" +
-    "Duración estimada: " + formatDuration(getDuration()) + "\n\n" +
-    "Información adicional:\n" +
-    additionalInfo + "\n\n" +
-    "¿Está disponible este turno? " + emojiSobre + ".";
+Día: ${dia}
+Horario: ${hora}
+
+Servicios:
+${serviceLines}
+
+${removalText}
+
+Duración estimada: ${formatDuration(getDuration())}`;
+
+  if (detalle) {
+    message += `
+
+Información adicional:
+${detalle}`;
+  }
+
+  message += `
+
+¿Está disponible este turno?`;
 
   return message;
 }
@@ -387,7 +390,8 @@ if (whatsappButton) {
     }
 
     const message = encodeURIComponent(buildWhatsAppMessage());
-    const url = `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${message}`;
+
+    const url = `https://wa.me/${WHATSAPP}?text=${message}`;
 
     window.open(url, "_blank");
   });
