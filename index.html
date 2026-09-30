@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lupé Studio - Solicitud de turnos para uñas, pestañas, cejas y masajes.">
+  <title>Lupé Studio | Solicitud de turno</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-card">
+      <img src="logo.jpeg" alt="Lupé Studio" class="logo">
+      <p class="eyebrow">BELLEZA · DETALLE · TIEMPO PARA VOS</p>
+      <h1>Solicitá tu turno</h1>
+      <p class="hero-text">Elegí tus servicios, indicá el día y horario que preferís y enviá tu solicitud directamente por WhatsApp.</p>
+      <a class="hero-button" href="#turno">Comenzar</a>
+    </div>
+  </header>
+
+  <main id="turno" class="container">
+    <section class="step">
+      <div class="step-title">
+        <span>01</span>
+        <div>
+          <p class="eyebrow">Tus datos</p>
+          <h2>¿Cómo te llamás?</h2>
+        </div>
+      </div>
+      <label for="nombre">Nombre y apellido</label>
+      <input id="nombre" type="text" placeholder="Ej. María Pérez" autocomplete="name">
+      <small class="error" id="nombreError"></small>
+    </section>
+
+    <section class="step">
+      <div class="step-title">
+        <span>02</span>
+        <div>
+          <p class="eyebrow">Elegí</p>
+          <h2>Servicios</h2>
+        </div>
+      </div>
+
+      <p class="helper">Podés seleccionar uno o varios servicios. La duración es orientativa para que sepas cuánto tiempo requiere tu turno.</p>
+
+      <div class="service-group">
+        <h3>Uñas</h3>
+        <div class="services" id="unasServices"></div>
+      </div>
+
+      <div class="service-group">
+        <h3>Pestañas y cejas</h3>
+        <div class="services" id="pestanasServices"></div>
+      </div>
+
+      <div class="service-group">
+        <h3>Masajes</h3>
+        <div class="services" id="masajesServices"></div>
+      </div>
+
+      <small class="error" id="serviciosError"></small>
+    </section>
+
+    <section class="step" id="retiroSection">
+      <div class="step-title">
+        <span>03</span>
+        <div>
+          <p class="eyebrow">Importante</p>
+          <h2>¿Tenés un tratamiento anterior?</h2>
+        </div>
+      </div>
+
+      <p class="helper">Si necesitás retirar un servicio anterior, avisanos. El tiempo estimado cambia según el tratamiento.</p>
+
+      <div class="radio-grid">
+        <label class="radio-card">
+          <input type="radio" name="retiro" value="no" checked>
+          <span>No, no necesito retiro</span>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="retiro" value="semipermanente">
+          <span>Sí, retiro de semipermanente</span>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="retiro" value="capping">
+          <span>Sí, retiro de capping en gel</span>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="retiro" value="softgel">
+          <span>Sí, retiro de Soft Gel</span>
+        </label>
+      </div>
+
+      <label for="detalle">¿Querés contarnos algo sobre tu tratamiento anterior?</label>
+      <textarea id="detalle" rows="3" placeholder="Opcional. Por ejemplo: tengo un servicio realizado en otro estudio..."></textarea>
+    </section>
+
+    <section class="step">
+      <div class="step-title">
+        <span>04</span>
+        <div>
+          <p class="eyebrow">Elegí tu momento</p>
+          <h2>Día y horario</h2>
+        </div>
+      </div>
+
+      <label for="dia">Día</label>
+      <select id="dia">
+        <option value="">Seleccioná un día</option>
+      </select>
+
+      <label for="hora">Horario</label>
+      <select id="hora">
+        <option value="">Seleccioná un horario</option>
+      </select>
+
+      <p class="schedule-note">Atendemos de lunes a viernes de 08:00 a 18:00. El último horario de inicio disponible es 17:00. La disponibilidad final se confirma por WhatsApp.</p>
+      <small class="error" id="fechaError"></small>
+    </section>
+
+    <aside class="summary">
+      <p class="eyebrow">Tu solicitud</p>
+      <h2>Resumen</h2>
+      <div id="summaryContent">
+        <p class="empty">Todavía no seleccionaste servicios.</p>
+      </div>
+      <div class="duration" id="durationBox">
+        <span>Duración estimada</span>
+        <strong id="duration">0 min</strong>
+      </div>
+    </aside>
+
+    <section class="final">
+      <button id="whatsappButton" class="whatsapp-button" type="button">
+        Enviar solicitud por WhatsApp
+      </button>
+      <p class="final-note">La página genera una solicitud. El turno queda confirmado cuando Lupé Studio responde por WhatsApp.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <strong>Lupé Studio</strong>
+      <span>Atención de lunes a viernes · 08:00 a 18:00</span>
+    </div>
+    <a href="https://wa.me/5492215453795" target="_blank" rel="noopener">WhatsApp</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
