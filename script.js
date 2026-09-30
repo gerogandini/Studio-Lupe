@@ -335,8 +335,9 @@ function buildWhatsAppMessage() {
   const detalle = document.getElementById("detalle").value.trim();
   const removal = getRemoval();
 
+  // Guiones '-' en la lista de servicios
   const serviceLines = [...selected.values()]
-    .map((service) => `• ${service.name}`)
+    .map((service) => `- ${service.name}`)
     .join("\n");
 
   let removalText = "No necesita retiro.";
@@ -357,8 +358,11 @@ function buildWhatsAppMessage() {
     ? detalle
     : "No tengo información adicional.";
 
+  // \u{1F977} = Corazón rosado 🩷
+  // \u{2728}  = Destellos ✨
+  // \u{1F4E9} = Sobre / Mensaje 📩
   const message = `Hola Lupé Studio! \u{1F977}
-Quisiera solicitar un turno \u{2728} \u{2728}
+Quisiera solicitar un turno \u{2728}
 
 Nombre: ${nombre}
 
