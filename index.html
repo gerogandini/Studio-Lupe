@@ -98,9 +98,46 @@
       <textarea id="detalle" rows="3" placeholder="Opcional. Por ejemplo: tengo un servicio realizado en otro estudio..."></textarea>
     </section>
 
-    <section class="step">
+    
+    <section class="step" id="disenoSection">
       <div class="step-title">
         <span>04</span>
+        <div>
+          <p class="eyebrow">Personalizá tu turno</p>
+          <h2>¿Querés realizar algún diseño?</h2>
+        </div>
+      </div>
+
+      <p class="helper">
+        Si querés algún diseño especial, contanos cómo te gustaría.
+      </p>
+
+      <div class="radio-grid">
+        <label class="radio-card">
+          <input type="radio" name="diseno" value="no" checked>
+          <span>No, sin diseño</span>
+        </label>
+
+        <label class="radio-card">
+          <input type="radio" name="diseno" value="si">
+          <span>Sí, quiero un diseño</span>
+        </label>
+      </div>
+
+      <div id="disenoInputContainer" style="display: none;">
+        <label for="diseno">Contanos qué diseño te gustaría</label>
+
+        <textarea
+          id="diseno"
+          rows="3"
+          placeholder="Ej.: francesitas rosas con flores blancas..."
+        ></textarea>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-title">
+        <span>05</span>
         <div>
           <p class="eyebrow">Elegí tu momento</p>
           <h2>Día y horario</h2>
