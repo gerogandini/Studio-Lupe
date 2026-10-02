@@ -333,6 +333,12 @@ function buildWhatsAppMessage() {
   const dia = document.getElementById("dia").value;
   const hora = document.getElementById("hora").value;
   const detalle = document.getElementById("detalle").value.trim();
+
+  const disenoInput = document.getElementById("diseno");
+  const diseno = disenoInput
+    ? disenoInput.value.trim()
+    : "";
+
   const removal = getRemoval();
 
   const serviceLines = [...selected.values()]
@@ -353,6 +359,10 @@ function buildWhatsAppMessage() {
     removalText = "Necesita retiro de Soft Gel.";
   }
 
+  const disenoText = diseno
+    ? diseno
+    : "Sin diseño.";
+
   const additionalInfo = detalle
     ? detalle
     : "No tengo información adicional.";
@@ -371,6 +381,9 @@ ${serviceLines}
 ${removalText}
 
 Duración estimada: ${formatDuration(getDuration())}
+
+Diseño:
+${disenoText}
 
 Información adicional:
 ${additionalInfo}
