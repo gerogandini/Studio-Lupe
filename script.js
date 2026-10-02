@@ -402,6 +402,27 @@ document
     input.addEventListener("change", updateSummary);
   });
 
+const disenoInputs = document.querySelectorAll(
+  'input[name="diseno"]'
+);
+
+const disenoInputContainer = document.getElementById(
+  "disenoInputContainer"
+);
+
+disenoInputs.forEach((input) => {
+  input.addEventListener("change", () => {
+    if (input.value === "si" && input.checked) {
+      disenoInputContainer.style.display = "block";
+    }
+
+    if (input.value === "no" && input.checked) {
+      disenoInputContainer.style.display = "none";
+      document.getElementById("diseno").value = "";
+    }
+  });
+});
+
 renderServices("unasServices", services.unas);
 renderServices("pestanasServices", services.pestanas);
 renderServices("masajesServices", services.masajes);
